@@ -2,12 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { Task } from '@prisma/client';
 import { UseCase } from '../../index';
 import SaveTaskDto from './SaveTaskDto';
+import TaskRepository from '../../Repositories/TaskRepository';
 
 @Injectable()
 export default class SaveTaskUseCase
   implements UseCase<Promise<Task>, [dto: SaveTaskDto]>
 {
-  private taskRepository: any;
+  private taskRepository: TaskRepository;
   constructor() {}
 
   async handle(dto: SaveTaskDto) {
