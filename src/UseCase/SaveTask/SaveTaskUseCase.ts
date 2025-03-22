@@ -8,15 +8,14 @@ import TaskRepository from '../../Repositories/TaskRepository';
 export default class SaveTaskUseCase
   implements UseCase<Promise<Task>, [dto: SaveTaskDto]>
 {
-  private taskRepository: TaskRepository;
-  constructor() {}
+  constructor(private readonly taskRepository: TaskRepository) {}
 
   async handle(dto: SaveTaskDto) {
     /*
      * @todo IMPLEMENT HERE : VALIDATION DTO, DATA SAVING, ERROR CATCHING
      */
-    if (!dto.name || dto.name.trim.length === 0) {
-      throw new Error('Task name is required');
+    if (!dto.name || dto.name.trim().length === 0) {
+      throw new Error('Task name is required' + dto.name);
     }
 
     try {
